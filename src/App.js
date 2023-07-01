@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import YouTube from 'react-youtube';
+import axios from 'axios';  //nos permite hace peticiones al contenido de un  enlace HTTP
+import YouTube from 'react-youtube';  // para implementar youtube video
 import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -14,11 +14,12 @@ function App() {
   const URL_IMAGE = "https://image.tmdb.org/t/p/original"
 
   // VARIABLES DE ESTADOS
-  const [movies, setMovies] = useState([])
-  const [searchKey, setSearchKey] = useState("")
+  const [movies, setMovies] = useState([]);
+  const [searchKey, setSearchKey] = useState("");
   const [trailer, setTrailer] = useState(null);
   const [movie, setMovie] = useState({ title: "Loading Movies" });
   const [playing, setPlaying] = useState(false);
+
 
   // funcion para realizar la peticion por get de un solo objeto a la api
   const fetchMovies = async (searchKey) => {
@@ -130,7 +131,7 @@ useEffect(() => {
                   <div className="">
                     {trailer ? (
                       <button
-                        className="boton"
+                        className="btn btn-outline-dark"
                         onClick={() => setPlaying(true)}
                         type="button"
                       >

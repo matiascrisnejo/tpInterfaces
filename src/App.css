@@ -19,7 +19,8 @@
   padding: 10px 15px;
   cursor: pointer;
   margin-bottom: 10px;
-}
+  border-radius: 10px;
+} 
 .reproductor{
   width: 100%;
   height: 600px;
@@ -36,3 +37,17 @@
 .formulario input{
   width: auto;
 }
+
+.row img{
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.row h4{
+  margin-top: 20px;
+}
+
+.row img:hover{
+  opacity: 0.6;
+}
+
