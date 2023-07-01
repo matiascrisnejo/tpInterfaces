@@ -7,8 +7,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 In the project directory, you can run:
 
 ### `npm i  axios`
+
 ### `npm i react-youtube`
+
 ### `npm install react-bootstrap bootstrap`
+
 ### `npm start`
 
 Runs the app in the development mode.\
@@ -75,6 +78,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 
-npm i  axios
-npm i react-youtube
-npm install react-bootstrap bootstrap
+### `npm i  axios`
+
+### `npm i react-youtube`
+
+### `npm install react-bootstrap bootstrap`
