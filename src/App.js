@@ -36,57 +36,61 @@ function App() {
     setMovies(results)
     setMovie(results[0])
 
-    if(results.length){
+    if (results.length) {
       await fetchMovie(results[0].id)
     }
   }
 
-// funcion para la peticion de un solo objeto y mostrar en reproductor de video
-const fetchMovie = async(id) => {
-  const {data} = await axios.get(`${API_URL}/movie/${id}`,{
-    params:{
-      api_key: API_KEY,
-      append_to_response: "videos"
+  // funcion para la peticion de un solo objeto y mostrar en reproductor de video
+  const fetchMovie = async (id) => {
+    const { data } = await axios.get(`${API_URL}/movie/${id}`, {
+      params: {
+        api_key: API_KEY,
+        append_to_response: "videos"
+      }
+    })
+
+    if (data.videos && data.videos.results) {
+      const trailer = data.videos.results.find(
+        (vid) => vid.name === "Official Trailer"
+      );
+      setTrailer(trailer ? trailer : data.videos.results[0])  //valido para no tener resultado con error
     }
-  })
-
-  if(data.videos && data.videos.results){
-    const trailer = data.videos.results.find(
-      (vid) => vid.name === "Official Trailer"
-    );
-    setTrailer(trailer ? trailer : data.videos.results[0])  //valido para no tener resultado con error
+    setMovie(data)    //return data
   }
-  setMovie(data)    //return data
-}
 
-const selectMovie = async(movie) =>{
-  fetchMovie(movie.id)
-  setMovie(movie)
-  window.scrollTo(0,0)
-}
+  const selectMovie = async (movie) => {
+    fetchMovie(movie.id)
+    setMovie(movie)
+    window.scrollTo(0, 0)
+  }
 
-// funcion para buscar peliculas
-const searchMovies = (e) => {
-  e.preventDefault();       //para que no permita que la pagina se este recargando 
-  fetchMovies(searchKey)    //cada vez q hacemos la peticion
-}
+  // funcion para buscar peliculas
+  const searchMovies = (e) => {
+    e.preventDefault();       //para que no permita que la pagina se este recargando 
+    fetchMovies(searchKey)    //cada vez q hacemos la peticion
+  }
 
 
-useEffect(() => {
-  fetchMovies();
-}, [])
+  useEffect(() => {
+    fetchMovies();
+  }, [])
 
 
 
   return (
-    
+
     <div>
-        <Header/>
-      <h2 className= "text-center mt-5 mb-5">Trailer Movies</h2>
+      <Header />
+      <h2 className="text-center mt-5 mb-5">Trailer Movies</h2>
       {/* buscador */}
       <div className="formulario">
-        <form className="d-flex" role="search" onSubmit= {searchMovies}>
-          <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange= {(e) => setSearchKey(e.target.value)}/>
+        <form className="d-flex" role="search" onSubmit={searchMovies}>
+          <input className="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            onChange={(e) => setSearchKey(e.target.value)} />
           <button className="btn btn-outline-success" type="submit">Search</button>
         </form>
       </div>
@@ -151,18 +155,18 @@ useEffect(() => {
       </div>
       {/* contenedor que va mostrar posters de las pelis actuales */}
       <div className="container mt-3">
-        <div className= "row">
+        <div className="row">
           {movies.map((movie) => (
-            <div key={movie.id} className= "col-md-4 mb-3" onClick={() => selectMovie(movie)}>
-              <img src= {`${URL_IMAGE + movie.poster_path}`} alt= "" height={600} width="100%"/>
-              <h4 className= "text-center">
+            <div key={movie.id} className="col-md-4 mb-3" onClick={() => selectMovie(movie)}>
+              <img src={`${URL_IMAGE + movie.poster_path}`} alt="" height={600} width="100%" />
+              <h4 className="text-center">
                 {movie.title}
               </h4>
             </div>
           ))}
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
