@@ -8,10 +8,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
-  const API_URL = "http://api.themoviedb.org/3"
-  const API_KEY = "8566e4cbc8d8b832abd6ff48928cdf6b"
-  const IMAGE_PATH = "https://image.tmdb.org/t/p/original"
-  const URL_IMAGE = "https://image.tmdb.org/t/p/original"
+  
+  const API_URL = process.env.REACT_APP_APII_URL
+  const API_KEY = process.env.REACT_APP_APII_KEY
+  const IMAGE_PATH = process.env.REACT_APP_IMAGEE_PATH
+  const URL_IMAGE = process.env.REACT_APP_URLL_IMAGE
 
   // VARIABLES DE ESTADOS
   const [movies, setMovies] = useState([]);
