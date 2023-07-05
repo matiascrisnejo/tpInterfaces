@@ -136,7 +136,7 @@ function App() {
                   <div className="">
                     {trailer ? (
                       <button
-                        className="btn btn-outline-dark"
+                        class="btn btn-dark"
                         onClick={() => setPlaying(true)}
                         type="button"
                       >
